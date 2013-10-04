@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Index";
+
+    var result = "";
+    if(IsPost) {
+        result = "Is post";
+    } else {
+        result = "Initial loading";
+    }
+}
+
+<h2>Index</h2>
+<p>Post: @result</p>
+<p>Get/post: @ViewBag.GetPost</p>
+
+
+<h3>Form, Post to View</h3>
+@using (Html.BeginForm()) {
+    <input type="Submit" name="Submit" value="Post"/>
+}
+
+
+<h3>Test: Form, Post to controller</h3>
+@using (Html.BeginForm("Index", "PostGet", FormMethod.Post))
+{
+    <p>@ViewBag.Textbox</p>
+    
+    @Html.TextBox("id")
+    <input type="submit" value="Submit" />
+}
+
+<h3>Test2: Form, Post, IndexTest2, To controller with more values</h3>
+@using (Html.BeginForm("IndexTest2", "PostGet", FormMethod.Post))
+{
+    <p>@ViewBag.Textbox2</p>
+    
+    <p>s1: @Html.TextBox("s1")</p>
+    <p>s2: @Html.TextBox("s2")</p>
+    <input type="submit" value="Submit" />
+}
+
+
+<h3>Test3: Form, Get, IndexTest3, With Action button</h3>
+@using (Html.BeginForm("IndexTest3", "PostGet", FormMethod.Get))
+{
+    <p>@ViewBag.Textbox3</p>
+}
+
+@Html.ActionLink("Press me, I'm an ActionLink", "IndexTest3", "PostGet")
+

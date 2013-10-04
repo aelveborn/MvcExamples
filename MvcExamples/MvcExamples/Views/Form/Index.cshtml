@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="column-50">
+
+    <h2>Index</h2>
+
+    @* This is the form that will be passed on to the partial view _ResultPartial *@
+    @using (Html.BeginForm("Index", "Form", new { PostedDate = DateTime.Now }, FormMethod.Post))
+    {    
+        <p>
+            Surname:<br />
+            @Html.TextBox("Surname")
+        </p>
+        <p>
+            Lastname:<br />
+            @Html.TextBox("Lastname")
+        </p>
+        <p>
+            E-mail:<br />
+            @Html.TextBox("Email")
+        </p>
+        <p>
+            Age:<br />
+            @Html.TextBox("Age")
+        </p>
+    
+        <input id="Submit1" type="submit" value="Save" />
+    }
+
+</div>
+
+
+<div class="column-50">    
+
+    @* The result from the form will be viewed here *@ 
+    @Html.Partial("_ResultPartial")
+
+</div>

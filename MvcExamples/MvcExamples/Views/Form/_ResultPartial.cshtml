@@ -1,0 +1,15 @@
+﻿@* This view is created as a partial view *@
+
+@model MvcExamples.Models.UserForm
+
+@if(Model != null) {
+    
+    <h2>_ResultPartial</h2>
+    <p>This is a partial view renderd in Index</p>
+    
+    <h2>@Model.Surname @Model.Lastname</h2>
+    <p>Email: @Model.Email</p>
+    <p>Age: @Model.Age</p>
+    <p>This was posted: @Model.PostedDate.ToString()</p>    
+    
+}
