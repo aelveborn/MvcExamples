@@ -5,8 +5,10 @@
 <div class="column-50">
 
     <h2>Index</h2>
+    <p>
+        This form uses a model to send the values into a partial view. This partial view is located in Views/Form/_ResultPartial but is viewed inside Index.
+    </p>
 
-    @* This is the form that will be passed on to the partial view _ResultPartial *@
     @using (Html.BeginForm("Index", "Form", new { PostedDate = DateTime.Now }, FormMethod.Post))
     {    
         <p>
@@ -34,7 +36,6 @@
 
 <div class="column-50">    
 
-    @* The result from the form will be viewed here *@ 
     @Html.Partial("_ResultPartial")
 
 </div>
