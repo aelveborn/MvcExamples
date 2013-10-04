@@ -3,48 +3,75 @@
 
     var result = "";
     if(IsPost) {
-        result = "Is post";
+        result = "HttpPost";
     } else {
-        result = "Initial loading";
+        result = "HttpGet";
     }
 }
 
-<h2>Index</h2>
-<p>Post: @result</p>
-<p>Get/post: @ViewBag.GetPost</p>
+<div class="column-100 spacing">
 
+    <h2>Index</h2>
+    <p>@result</p>
 
-<h3>Form, Post to View</h3>
-@using (Html.BeginForm()) {
-    <input type="Submit" name="Submit" value="Post"/>
-}
+</div>
 
+<div class="column-50 spacing blue">
+    <h3>Post</h3>
+    <p>Simple post</p>
+    @using (Html.BeginForm("Index", "PostGet", FormMethod.Post)) {
+        <input type="Submit" name="Submit" value="Post"/>
+    }
+</div>
 
-<h3>Test: Form, Post to controller</h3>
-@using (Html.BeginForm("Index", "PostGet", FormMethod.Post))
-{
-    <p>@ViewBag.Textbox</p>
+<div class="column-50 spacing blue">
+
+    <h3>Send id</h3>
+    <p>Creates a HttpPost that is handled in PostGetController</p>
+    @using (Html.BeginForm("SendId", "PostGet", FormMethod.Post))
+    {
+        <p><strong>@ViewBag.Textbox</strong></p>
     
-    @Html.TextBox("id")
-    <input type="submit" value="Submit" />
-}
+        <p>
+            ID:<br />
+            @Html.TextBox("id")
+        </p>
+        <input type="submit" value="Submit" />
+    }
 
-<h3>Test2: Form, Post, IndexTest2, To controller with more values</h3>
-@using (Html.BeginForm("IndexTest2", "PostGet", FormMethod.Post))
-{
-    <p>@ViewBag.Textbox2</p>
+</div>
+
+<div class="column-50 spacing blue">
+
+    <h3>Send more values</h3>
+    <p>Creates a HttpPost that sends two values to the PostGetController</p>
+    @using (Html.BeginForm("SendMoreValues", "PostGet", FormMethod.Post))
+    {
+        <p><strong>@ViewBag.Textbox2</strong></p>
     
-    <p>s1: @Html.TextBox("s1")</p>
-    <p>s2: @Html.TextBox("s2")</p>
-    <input type="submit" value="Submit" />
-}
+        <p>
+            Surname:<br />
+            @Html.TextBox("surname")
+        </p>
+        <p>
+            Lastname:<br />
+            @Html.TextBox("lastname")
+        </p>
+    
+        <input type="submit" value="Submit" />
+    }
 
+</div>
 
-<h3>Test3: Form, Get, IndexTest3, With Action button</h3>
-@using (Html.BeginForm("IndexTest3", "PostGet", FormMethod.Get))
-{
-    <p>@ViewBag.Textbox3</p>
-}
+<div class="column-50 spacing blue">
 
-@Html.ActionLink("Press me, I'm an ActionLink", "IndexTest3", "PostGet")
+    <h3>ActionLink test</h3>
+    <p>This uses a form to get values from a HttpGet request</p>
+    @using (Html.BeginForm("ActionLinkTest", "PostGet", FormMethod.Get))
+    {
+        <p><strong>@ViewBag.Textbox3</strong></p>
+    }
 
+    @Html.ActionLink("Press me, I'm an ActionLink", "ActionLinkTest", "PostGet")
+
+</div>

@@ -12,31 +12,27 @@ namespace MvcExamples.Controllers
         // GET: /PostGet/
         public ActionResult Index()
         {
-            ViewBag.GetPost = "HttpGet";
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(string id)
+        public ActionResult SendId(string id)
         {
-            ViewBag.GetPost = "HttpPost";
-            ViewBag.Textbox = "Test1: " + id;
-            return View();
+            ViewBag.Textbox = "You sent id: " + id;
+            return View("Index");
         }
 
         [HttpPost]
-        public ActionResult IndexTest2(string s1, string s2)
+        public ActionResult SendMoreValues(string surname, string lastname)
         {
-            ViewBag.GetPost = "HttpPost";
-            ViewBag.Textbox2 = "Test2: " + s1 + " " + s2;
+            ViewBag.Textbox2 = "Your name: " + surname + " " + lastname;
             return View("Index");
         }
 
         [HttpGet]
-        public ActionResult IndexTest3()
+        public ActionResult ActionLinkTest()
         {
-            ViewBag.GetPost = "HttpGet";
-            ViewBag.Textbox3 = "Test3: Sweet, the GET worked fine eyy";
+            ViewBag.Textbox3 = "Sweet, the GET worked fine eyy";
             return View("Index");
         }
 
